@@ -1,5 +1,9 @@
 package com.restapp.ticketmanagement.repository;
 
-public class UserRepository {
+import com.restapp.ticketmanagement.pojo.User;
 
+import reactor.core.publisher.Flux;
+
+public interface UserRepository {
+	Flux<User> getAllUsers();
 }
