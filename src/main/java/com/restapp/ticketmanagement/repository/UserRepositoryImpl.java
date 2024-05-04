@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.restapp.ticketmanagement.pojo.User;
 
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository {
@@ -23,5 +24,12 @@ public class UserRepositoryImpl implements UserRepository {
 	public Flux<User> getAllUsers() {
 		return Flux.fromIterable(this.users.values());
 	}
+
+	@Override
+	public Mono<User> getUser(Integer id) {
+		
+		return Mono.justOrEmpty(this.users.get(id));
+	}
+
 
 }
