@@ -24,8 +24,30 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public Mono<User> getUser(Integer id) {
 		
-		return userRepository.getUser(id);
+		return userRepository.getUserById(id);
 	}
+
+	@Override
+	public Mono<User> createUser(User user) {
+		
+		return userRepository.createUser(user);
+	}
+
+	@Override
+	public Mono<User> updateUser(int id, User user) {
+
+		return userRepository.getUserById(id)
+                .flatMap(existingUser -> {
+                    existingUser.setUsername(user.getUsername());
+                    return userRepository.createUser(existingUser);
+                });
+	}
+
+	@Override
+    public Mono<Void> deleteUserById(int id) {
+		
+        return userRepository.deleteUser(id);
+    }
 	
 	
 	

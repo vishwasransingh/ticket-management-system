@@ -27,4 +27,15 @@ public class User {
 		this.username = username;
 	}
 
+	public User() {
+		super();
+	}
+
+	@Override
+	public String toString() {
+		return "User [userid=" + userid + ", username=" + username + "]";
+	}
+	
+	
+
 }
